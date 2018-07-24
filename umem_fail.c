@@ -33,7 +33,7 @@
  * Failure routines for libumem (not standalone)
  */
 
-#include "config.h"
+#include "umem_config.h"
 #include <sys/types.h>
 #include <signal.h>
 #include <stdarg.h>
@@ -94,7 +94,9 @@ umem_do_abort(void)
 		(void) raise (SIGABRT);
 #else
 		(void) signal(SIGABRT, SIG_DFL);
+#if !defined(ANDROID) && !defined(ROUTER) && !defined(ARM)
 		(void) sigrelse(SIGABRT);
+#endif
 		(void) raise(SIGABRT);
 #endif
 	}

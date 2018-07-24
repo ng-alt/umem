@@ -29,7 +29,7 @@
 
 /* #pragma ident	"@(#)umem_fork.c	1.3	05/06/08 SMI" */
 
-#include "config.h"
+#include "umem_config.h"
 /* #include "mtlib.h" */
 #include "umem_base.h"
 #include "vmem_base.h"
@@ -203,7 +203,7 @@ umem_release_child(void)
 void
 umem_forkhandler_init(void)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(ANDROID) && !defined(ASUSTOR) && !defined(X86_64) && !defined(ARM)
 	/*
 	 * There is no way to unregister these atfork functions,
 	 * but we don't need to.  The dynamic linker and libc take

@@ -27,7 +27,7 @@
 /* #pragma ident	"@(#)vmem_base.c	1.6	05/06/08 SMI" */
 
 /* #include "mtlib.h" */
-#include "config.h"
+#include "umem_config.h"
 #include "vmem_base.h"
 #include "umem_base.h"
 

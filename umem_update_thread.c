@@ -29,7 +29,7 @@
 
 /* #pragma ident	"@(#)umem_update_thread.c	1.2	05/06/08 SMI" */
 
-#include "config.h"
+#include "umem_config.h"
 #include "umem_base.h"
 #include "vmem_base.h"
 

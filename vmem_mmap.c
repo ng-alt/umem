@@ -29,7 +29,7 @@
 
 /* #pragma ident	"@(#)vmem_mmap.c	1.2	05/06/08 SMI" */
 
-#include "config.h"
+#include "umem_config.h"
 #include <errno.h>
 
 #if HAVE_SYS_MMAN_H

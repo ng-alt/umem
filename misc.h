@@ -32,7 +32,7 @@
 
 /* #pragma ident	"@(#)misc.h	1.6	05/06/08 SMI" */
 
-#include "config.h"
+#include "umem_config.h"
 #include <sys/types.h>
 #ifndef _WIN32
 #include <sys/time.h>

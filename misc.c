@@ -30,7 +30,7 @@
 /* #pragma ident	"@(#)misc.c	1.6	05/06/08 SMI" */
 
 #define _BUILDING_UMEM_MISC_C
-#include "config.h"
+#include "umem_config.h"
 /* #include "mtlib.h" */
 #if HAVE_UNISTD_H
 #include <unistd.h>

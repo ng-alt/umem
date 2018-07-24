@@ -54,7 +54,7 @@
  * before calling sbrk().
  */
 
-#include "config.h"
+#include "umem_config.h"
 /* #include "mtlib.h" */
 #include <errno.h>
 #include <limits.h>

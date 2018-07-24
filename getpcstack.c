@@ -29,7 +29,7 @@
 
 /* #pragma ident	"@(#)getpcstack.c	1.5	05/06/08 SMI" */
 
-#include "config.h"
+#include "umem_config.h"
 #include "misc.h"
 
 #if HAVE_UCONTEXT_H

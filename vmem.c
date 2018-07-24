@@ -108,7 +108,7 @@
  * sorted in address order.
  */
 
-#include "config.h"
+#include "umem_config.h"
 /* #include "mtlib.h" */
 #include <sys/vmem_impl_user.h>
 #if HAVE_ALLOCA_H

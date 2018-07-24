@@ -6,7 +6,21 @@
 #ifndef _EC_UMEM_SOL_COMPAT_H_
 #define _EC_UMEM_SOL_COMPAT_H_
 
-#include "config.h"
+#include "umem_config.h"
+
+#if defined(MIPS)
+  #include <atomic.h>
+#elif defined(ARM)
+  //#include <stdatomic.h>
+#elif defined(ANDROID)
+  #if defined(ARM64)
+    #include <stdatomic.h>
+  #else
+    #include <sys/atomics.h>
+  #endif
+#elif defined(PJ_CONFIG_IPHONE)
+  #include<libkern/OSAtomic.h>
+#endif
 
 #include <stdint.h>
 #include <pthread.h>
@@ -129,11 +143,35 @@ static INLINE uint_t ec_atomic_cas(uint_t *mem, uint_t with, uint_t cmp)
 # ifndef ec_atomic_inc
 static INLINE uint_t ec_atomic_inc(uint_t *mem)
 {
+  return ++(*mem);
+#if 0
+#if defined(MIPS)
+  atomic_increment(mem);
+  return *mem;
+#elif defined(ARM) && !defined(ANDROID)
+  return ++(*mem);
+#elif defined(ANDROID)
+  #if defined(ARM64)
+    atomic_fetch_add(mem, 1);
+  #else
+    __atomic_inc(mem);
+  #endif
+  return *mem;
+#elif defined(PJ_CONFIG_IPHONE)
+  #if defined(ARM64)
+    OSAtomicIncrement64(mem);
+  #else
+    OSAtomicIncrement32(mem);
+  #endif
+  return *mem;
+#else
   register uint_t last;
   do {
     last = *mem;
   } while (ec_atomic_cas(mem, last+1, last) != last);
   return ++last;
+#endif
+#endif
 }
 # endif
 # ifndef ec_atomic_inc64
@@ -166,7 +204,9 @@ static INLINE uint_t ec_atomic_inc(uint_t *mem)
 #ifdef _WIN32
 #define issetugid()		  0
 #elif !HAVE_ISSETUGID
+#if !defined(PJ_ANDROID) && !defined(PJ_CONFIG_IPHONE) || (defined(PJ_ANDROID) && defined(ARM64))
 #define issetugid()       (geteuid() == 0)
+#endif
 #endif
 
 #define _sysconf(a) sysconf(a)

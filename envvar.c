@@ -29,7 +29,7 @@
 
 /* #pragma ident	"@(#)envvar.c	1.5	05/06/08 SMI" */
 
-#include "config.h"
+#include "umem_config.h"
 #include <ctype.h>
 #include <errno.h>
 #include <limits.h>

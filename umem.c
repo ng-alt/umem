@@ -365,7 +365,7 @@
  * \endcode
  */
 
-#include "config.h"
+#include "umem_config.h"
 /* #include "mtlib.h" */
 #include <umem_impl.h>
 #include <sys/vmem_impl_user.h>
